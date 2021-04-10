@@ -1,4 +1,9 @@
 
+## 0.1.1
+* b5a028e adding keywords
+* b04b929 preparing for first publishing
+## v0.1.0
+* d97c4e3 0.1.0
 * a7442ee fixing readme
 * 1d7fbca removing semantic release
 * 3948139 completing unit tests and fixes

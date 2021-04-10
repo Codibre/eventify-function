@@ -1,7 +1,7 @@
 {
   "name": "eventify-function",
   "description": "This project is just a template for creation of new projects",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Thiago O Santos <tos.oliveira@gmail.com>"
   },
@@ -66,7 +66,12 @@
   "bugs": {
     "url": "https://github.com/codibre/eventify-function/issues"
   },
-  "keywords": ["events", "function", "tracking", "eventify"],
+  "keywords": [
+    "events",
+    "function",
+    "tracking",
+    "eventify"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@codibre/confs": "1.0.1",
