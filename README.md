@@ -38,10 +38,13 @@ eventified.on('init', (uuid: string, a: Number, b: string) => console.log(`(${uu
 eventified.on('end', (uuid: string, result: boolean, a: Number, b: string) => console.log(`(${uuid}): myFunction returned "${result}" for the call with "${a}" and ${b}"`);
 eventified.on('error', (uuid: string, err: Error, a: Number, b: string) => console.log(`(${uuid}): myFunction threw "${err.Message}" for the call with "${a}" and "${b}"`);
 eventified.on('iterated', (uuid: string, a: Number, b: string) => console.log(`(${uuid}): Iteration ended for the call with "${a}" and "${b}"`);
+eventified.on('yielded', (uuid: string, value: boolean; a: Number, b: string) => console.log(`(${uuid}): Iteration yielded: ${value} for the call with "${a}" and "${b}"`);
 ```
 
 Notice that all the events are strongly typed and receives the parameters passed to the function, while **end** additionally receives the result, and **error** the threw Error.
-The event **iterated** does not
+The event **iterated** does not receives the result as, for an iterable, there is multiples, but you can access each yielded value by the **yielded** event.
+Finally, there is an uuid generated for each call, so, you can identify each call flow.
+
 
 ## License
 
