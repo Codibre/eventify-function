@@ -1,3 +1,6 @@
+import 'jest-callslike';
+import 'jest-extended';
+
 afterEach(() => {
 	jest.restoreAllMocks();
 	jest.clearAllMocks();
@@ -13,12 +16,5 @@ export function getNames<T extends object>(c: { prototype: T }): T {
 
 			return result;
 		},
-	});
-}
-
-export function expectCallsLike(spy: any, ...parameters: unknown[][]) {
-	expect(spy).toBeCalledTimes(parameters.length);
-	parameters.forEach((params, i) => {
-		expect(spy).toHaveBeenNthCalledWith(i + 1, ...params);
 	});
 }
