@@ -1,5 +1,8 @@
 
-## 0.1.1
+## 0.1.2
+* 0a04efc removing map
+## v0.1.1
+* d98e7c3 0.1.1
 * b5a028e adding keywords
 * b04b929 preparing for first publishing
 ## v0.1.0
