@@ -6,6 +6,10 @@ afterEach(() => {
 	jest.clearAllMocks();
 });
 
+export function fName(result: Function): any {
+	return `${result}`;
+}
+
 export function getNames<T extends object>(c: { prototype: T }): T {
 	return new Proxy(c.prototype, {
 		get(target: T, property: string) {
@@ -14,7 +18,7 @@ export function getNames<T extends object>(c: { prototype: T }): T {
 				throw new Error(`Method ${property} doesn't exist`);
 			}
 
-			return result;
+			return `.${fName(result as any)}`;
 		},
 	});
 }

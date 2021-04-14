@@ -26,11 +26,13 @@ export interface FunctionListener<TFunc extends Func> {
 	): FunctionEmitter<TFunc>;
 }
 
-export type EventifiedFunc<TFunc extends Func> = TFunc & {
+export interface FuncListeners<TFunc extends Func> {
 	on: FunctionListener<TFunc>;
 	once: FunctionListener<TFunc>;
 	off: FunctionListener<TFunc>;
-};
+}
+
+export type EventifiedFunc<TFunc extends Func> = TFunc & FuncListeners<TFunc>;
 
 export type FunctionEmitter<TFunc extends Func> = TypedEventEmitter<
 	Events<TFunc>
@@ -44,5 +46,5 @@ export interface EventifyApplier<
 	T extends Object,
 	K extends KeysMatching<T, Func>
 > {
-	apply(eventifiedMethod: EventifiedFunc<T[K]>): void;
+	applyListeners(eventifiedMethod: FuncListeners<T[K]>): void;
 }
