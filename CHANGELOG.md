@@ -1,5 +1,9 @@
 
-## 0.1.2
+## 0.2.0
+* 9e77045 creating apply eventify
+* 152ae7d creating decorator for eventify appliance
+## v0.1.2
+* 1469764 0.1.2
 * 0a04efc removing map
 ## v0.1.1
 * d98e7c3 0.1.1

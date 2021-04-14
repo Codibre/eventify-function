@@ -1,11 +1,13 @@
-fluent-iterable - v0.1.2
+fluent-iterable - v0.2.0
 
-# fluent-iterable - v0.1.2
+# fluent-iterable - v0.2.0
 
 ## Table of contents
 
 ### Interfaces
 
+- [EventifyApplier](interfaces/eventifyapplier.md)
+- [FuncListeners](interfaces/funclisteners.md)
 - [FunctionListener](interfaces/functionlistener.md)
 
 ### Type aliases
@@ -16,6 +18,7 @@ fluent-iterable - v0.1.2
 
 ### Functions
 
+- [applyEventify](README.md#applyeventify)
 - [eventifyFunction](README.md#eventifyfunction)
 - [isEventified](README.md#iseventified)
 
@@ -35,7 +38,7 @@ ___
 
 ### EventifiedFunc
 
-Ƭ **EventifiedFunc**<TFunc\>: TFunc & { `off`: [*FunctionListener*](interfaces/functionlistener.md)<TFunc\> ; `on`: [*FunctionListener*](interfaces/functionlistener.md)<TFunc\> ; `once`: [*FunctionListener*](interfaces/functionlistener.md)<TFunc\>  }
+Ƭ **EventifiedFunc**<TFunc\>: TFunc & [*FuncListeners*](interfaces/funclisteners.md)<TFunc\>
 
 #### Type parameters:
 
@@ -56,6 +59,20 @@ Name | Type |
 `TFunc` | Func |
 
 ## Functions
+
+### applyEventify
+
+▸ **applyEventify**(`getInstance?`: <T\>(`cls`: *Class*<T\>) => T \| *undefined*): *void*
+
+#### Parameters:
+
+Name | Type |
+:------ | :------ |
+`getInstance?` | <T\>(`cls`: *Class*<T\>) => T \| *undefined* |
+
+**Returns:** *void*
+
+___
 
 ### eventifyFunction
 
