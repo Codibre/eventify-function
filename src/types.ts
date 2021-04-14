@@ -35,3 +35,14 @@ export type EventifiedFunc<TFunc extends Func> = TFunc & {
 export type FunctionEmitter<TFunc extends Func> = TypedEventEmitter<
 	Events<TFunc>
 >;
+
+type KeysMatching<T, V> = {
+	[K in keyof T]-?: T[K] extends V ? K : never;
+}[keyof T];
+
+export interface EventifyApplier<
+	T extends Object,
+	K extends KeysMatching<T, Func>
+> {
+	apply(eventifiedMethod: EventifiedFunc<T[K]>): void;
+}
