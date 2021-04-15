@@ -1,6 +1,6 @@
-fluent-iterable - v0.2.0
+fluent-iterable - v0.3.0
 
-# fluent-iterable - v0.2.0
+# fluent-iterable - v0.3.0
 
 ## Table of contents
 
@@ -62,13 +62,13 @@ Name | Type |
 
 ### applyEventify
 
-▸ **applyEventify**(`getInstance?`: <T\>(`cls`: *Class*<T\>) => T \| *undefined*): *void*
+▸ **applyEventify**(`getInstance?`: <T\>(`cls`: *Class*<T\>) => T): *void*
 
 #### Parameters:
 
 Name | Type |
 :------ | :------ |
-`getInstance?` | <T\>(`cls`: *Class*<T\>) => T \| *undefined* |
+`getInstance?` | <T\>(`cls`: *Class*<T\>) => T |
 
 **Returns:** *void*
 

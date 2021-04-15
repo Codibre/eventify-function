@@ -1,13 +1,12 @@
-[fluent-iterable - v0.2.0](../README.md) / EventifyApplier
+[fluent-iterable - v0.3.0](../README.md) / EventifyApplier
 
-# Interface: EventifyApplier<T, K\>
+# Interface: EventifyApplier<F\>
 
 ## Type parameters
 
 Name | Type |
 :------ | :------ |
-`T` | Object |
-`K` | *KeysMatching*<T, Func\> |
+`F` | Func |
 
 ## Table of contents
 
@@ -19,12 +18,12 @@ Name | Type |
 
 ### applyListeners
 
-▸ **applyListeners**(`eventifiedMethod`: [*FuncListeners*](funclisteners.md)<T[K]\>): *void*
+▸ **applyListeners**(`eventifiedMethod`: [*FuncListeners*](funclisteners.md)<F\>): *void*
 
 #### Parameters:
 
 Name | Type |
 :------ | :------ |
-`eventifiedMethod` | [*FuncListeners*](funclisteners.md)<T[K]\> |
+`eventifiedMethod` | [*FuncListeners*](funclisteners.md)<F\> |
 
 **Returns:** *void*

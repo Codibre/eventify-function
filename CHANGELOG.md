@@ -1,5 +1,8 @@
 
-## 0.2.0
+## 0.3.0
+* 60e0de5 adjusting eventifyApplier and types
+## v0.2.0
+* e1e7072 0.2.0
 * 9e77045 creating apply eventify
 * 152ae7d creating decorator for eventify appliance
 ## v0.1.2
