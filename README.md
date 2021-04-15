@@ -63,7 +63,7 @@ class MyClass {
 In this example, **MyEventApplier** must implement **EventifyApplier<F extends Func>**, using the decorated method as signature:
 
 ```ts
-class MyEventApplier extends EventifyApplier<MyClass['test']s> {
+class MyEventApplier implements EventifyApplier<MyClass['test']s> {
   applyListeners(eventified: EventifiedFunc<MyClass['test']>) {
     eventified.on('end', (uuid: string, result: void, test: string, index: number) => {
       console.log(`${uuid}: ("${test}", ${index}) call ended`);
