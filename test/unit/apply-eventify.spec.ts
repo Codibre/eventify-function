@@ -1,19 +1,29 @@
+import { Func } from 'is-this-a-pigeon';
 import { applyEventify, EventifyApplier } from '../../src';
 import { Eventify } from '../../src/eventify-decorator';
+import * as lib from '../../src/eventify-function';
 import { fName } from './setup';
 
 describe(fName(applyEventify), () => {
+	beforeEach(() => {
+		jest
+			.spyOn(lib, 'eventifyFunction')
+			.mockImplementation((x) => `eventified ${x.name}` as any);
+	});
 	it('should call apply listeners for every decorated method', () => {
+		interface Test {
+			a: number;
+		}
 		const spy1 = jest.fn();
-		class Listener1 implements EventifyApplier<Object, any> {
+		class Listener1 implements EventifyApplier<Test['test1']> {
 			applyListeners = spy1 as any;
 		}
 		const spy2 = jest.fn();
-		class Listener2 implements EventifyApplier<Object, any> {
+		class Listener2 implements EventifyApplier<Func> {
 			applyListeners = spy2 as any;
 		}
 		const spy3 = jest.fn();
-		const listener3: EventifyApplier<Object, any> = {
+		const listener3: EventifyApplier<Func> = {
 			applyListeners: spy3 as any,
 		};
 
@@ -49,16 +59,16 @@ describe(fName(applyEventify), () => {
 			[Test.prototype.test3],
 		);
 		expect(spy3).toHaveCallsLike(
-			[Test.prototype.test1],
-			[Test.prototype.test2],
-			[Test.prototype.test3],
+			['eventified test1'],
+			['eventified test2'],
+			['eventified test3'],
 		);
 		expect(result).toBeUndefined();
 	});
 
 	it('should throw an error when a class listener is informed but no getInstance is', () => {
 		const spy1 = jest.fn();
-		class Listener1 implements EventifyApplier<Object, any> {
+		class Listener1 implements EventifyApplier<Func> {
 			applyListeners = spy1 as any;
 		}
 		class _Test {
@@ -81,7 +91,7 @@ describe(fName(applyEventify), () => {
 
 	it('should do nothing when getInstance returns undefined', () => {
 		const spy1 = jest.fn();
-		class Listener1 implements EventifyApplier<Object, any> {
+		class Listener1 implements EventifyApplier<Func> {
 			applyListeners = spy1 as any;
 		}
 		class _Test {
@@ -91,7 +101,7 @@ describe(fName(applyEventify), () => {
 			}
 		}
 
-		const result = applyEventify(() => undefined);
+		const result = applyEventify((): any => undefined);
 
 		expect(spy1).toHaveCallsLike();
 		expect(result).toBeUndefined();

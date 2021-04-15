@@ -38,13 +38,6 @@ export type FunctionEmitter<TFunc extends Func> = TypedEventEmitter<
 	Events<TFunc>
 >;
 
-type KeysMatching<T, V> = {
-	[K in keyof T]-?: T[K] extends V ? K : never;
-}[keyof T];
-
-export interface EventifyApplier<
-	T extends Object,
-	K extends KeysMatching<T, Func>
-> {
-	applyListeners(eventifiedMethod: FuncListeners<T[K]>): void;
+export interface EventifyApplier<F extends Func> {
+	applyListeners(eventifiedMethod: FuncListeners<F>): void;
 }

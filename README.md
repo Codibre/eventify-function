@@ -46,6 +46,52 @@ The event **iterated** does not receives the result as, for an iterable, there i
 Finally, there is an uuid generated for each call, so, you can identify each call flow.
 
 
+# Using decorators
+
+You can also easily eventify methods decorating them! To take this approach, do as follow:
+
+
+```ts
+class MyClass {
+  @Eventify(MyEventApplier)
+  test(test: string, index: number): void {
+    ...
+  }
+}
+```
+
+In this example, **MyEventApplier** must implement **EventifyApplier<F extends Func>**, using the decorated method as signature:
+
+```ts
+class MyEventApplier extends EventifyApplier<MyClass['test']s> {
+  applyListeners(eventified: EventifiedFunc<MyClass['test']>) {
+    eventified.on('end', (uuid: string, result: void, test: string, index: number) => {
+      console.log(`${uuid}: ("${test}", ${index}) call ended`);
+    });
+  }
+}
+```
+
+Finally, to initialize the appliers, you must call **applyEventify** informing instance getter function:
+
+```ts
+applyEventify(() => new MyEventApplier());
+```
+
+The instance getter function is needed because **eventify-function** does not have control of the right way to instantiate your applier classes. The idea here is for you to use some dependency injection package for it.
+If you don't have such complexity and want to avoid using **applyEventify**, you can inform to the decorator directly an instance of your class:
+
+```ts
+class MyClass {
+  @Eventify(new MyEventApplier())
+  test(test: string, index: number): void {
+    ...
+  }
+}
+```
+
+Using it like this, the applier will be used immediately.
+
 ## License
 
 Licensed under [MIT](https://en.wikipedia.org/wiki/MIT_License).
