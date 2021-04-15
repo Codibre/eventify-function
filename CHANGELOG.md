@@ -1,5 +1,8 @@
 
-## 0.3.0
+## 0.3.1
+* c4f912d fixing readme
+## v0.3.0
+* 4090ba9 0.3.0
 * 60e0de5 adjusting eventifyApplier and types
 ## v0.2.0
 * e1e7072 0.2.0
