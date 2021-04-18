@@ -4,7 +4,7 @@ import { interval } from '@codibre/fluent-iterable';
 
 describe(fName(getUniqueId), () => {
 	it('should return a different value for each call', () => {
-    const total = 1000000;
+		const total = 1000000;
 		const result = interval(1, total)
 			.map(() => getUniqueId())
 			.distinct()
