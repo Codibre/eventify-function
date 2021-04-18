@@ -8,7 +8,7 @@ import {
 	isPromiseLike,
 } from 'is-this-a-pigeon';
 import { eventified } from './symbol';
-import { v4 } from 'uuid';
+import { getUniqueId } from './get-unique-id';
 
 const callIdSymbol = Symbol('EventifyCallId');
 const contextSymbol = Symbol('EventifyContext');
@@ -133,7 +133,7 @@ function getFunc<TFunc extends Func>(
 ) {
 	return function (this: any, ...args: Parameters<TFunc>): ReturnType<TFunc> {
 		let result: ReturnType<TFunc>;
-		const id = v4();
+		const id = getUniqueId();
 		const self = getSelf(this, id);
 		listener.emit('init', id, ...args);
 		try {

@@ -1,10 +1,16 @@
-const v4 = jest.fn().mockReturnValue('uuid value');
-jest.mock('uuid', () => ({ v4 }));
 import { identity } from 'is-this-a-pigeon';
 import { callId, eventifyFunction, eventMapGet, eventMapSet } from '../../src';
 import './setup';
+import * as lib from '../../src/get-unique-id';
 
 describe(eventifyFunction.name, () => {
+	let getUniqueId: jest.SpyInstance;
+	beforeEach(() => {
+		getUniqueId = jest
+			.spyOn(lib, 'getUniqueId')
+			.mockReturnValue('uuid value' as any);
+	});
+
 	it('should only eventify once', () => {
 		const callback = () => 1;
 
@@ -26,7 +32,7 @@ describe(eventifyFunction.name, () => {
 		eventified.once('end', onEnd);
 		const result = eventified('a', 1, false);
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onEnd).toHaveCallsLike(['uuid value', '123', 'a', 1, false]);
 		expect(result).toBe('123');
@@ -50,7 +56,7 @@ describe(eventifyFunction.name, () => {
 			thrownError = error;
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onError).toHaveCallsLike(['uuid value', err, 'a', 1, false]);
 		expect(thrownError).toBe(err);
@@ -69,7 +75,7 @@ describe(eventifyFunction.name, () => {
 		eventified.once('end', onEnd);
 		const result = await eventified('a', 1, false);
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(checkCall).toHaveCallsLike([expected]);
 		expect(onEnd).toHaveBeenCalledAfter(checkCall);
@@ -98,7 +104,7 @@ describe(eventifyFunction.name, () => {
 			thrownError = error;
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(checkCall).toHaveCallsLike([undefined]);
 		expect(onError).toHaveBeenCalledAfter(checkCall);
@@ -124,7 +130,7 @@ describe(eventifyFunction.name, () => {
 		eventified.once('iterated', onIterated);
 		const result = Array.from(eventified('a', 1, false));
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onYielded).toHaveCallsLike(
 			['uuid value', 1, 'a', 1, false],
@@ -161,7 +167,7 @@ describe(eventifyFunction.name, () => {
 			thrownError = error;
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onYielded).toHaveCallsLike(
 			['uuid value', 1, 'a', 1, false],
@@ -194,7 +200,7 @@ describe(eventifyFunction.name, () => {
 			result.push(item);
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onYielded).toHaveCallsLike(
 			['uuid value', 1, 'a', 1, false],
@@ -234,7 +240,7 @@ describe(eventifyFunction.name, () => {
 			thrownError = error;
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onYielded).toHaveCallsLike(
 			['uuid value', 1, 'a', 1, false],
@@ -273,7 +279,7 @@ describe(eventifyFunction.name, () => {
 			thrownError = error;
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onYielded).toHaveCallsLike();
 		expect(checkCall).toHaveCallsLike([]);
@@ -317,7 +323,7 @@ describe(eventifyFunction.name, () => {
 			result.push(item);
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onYielded).toHaveCallsLike(
 			['uuid value', 'yield uuid value', 'a', 1, false],
@@ -362,7 +368,7 @@ describe(eventifyFunction.name, () => {
 			result.push(item);
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(onInit).toHaveCallsLike(['uuid value', 'a', 1, false]);
 		expect(onYielded).toHaveCallsLike([
 			'uuid value',
@@ -402,7 +408,7 @@ describe(eventifyFunction.name, () => {
 			thrownError = err;
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(result).toEqual(['yield 123']);
 		expect(thrownError).toBeInstanceOf(TypeError);
 	});
@@ -429,8 +435,36 @@ describe(eventifyFunction.name, () => {
 			thrownError = err;
 		}
 
-		expect(v4).toHaveCallsLike([]);
+		expect(getUniqueId).toHaveCallsLike([]);
 		expect(result).toEqual(['yield 123']);
 		expect(thrownError).toBeInstanceOf(TypeError);
+	});
+
+	it('should return a different unique id for each call', async () => {
+		getUniqueId.mockReturnValueOnce('123').mockReturnValueOnce('456');
+
+		class Test {
+			async *test(this: unknown, ..._args: any[]) {
+				const id = callId(this);
+				yield 'yield ' + id;
+			}
+		}
+		const instance = new Test();
+
+		instance.test = eventifyFunction(instance.test);
+		const result1 = new Array<any>();
+		const iterable1 = instance.test('a', 1, false);
+		const iterable2 = instance.test('a', 1, false);
+		const result2 = new Array<any>();
+		for await (const item of iterable2) {
+			result2.push(item);
+		}
+		for await (const item of iterable1) {
+			result1.push(item);
+		}
+
+		expect(getUniqueId).toHaveCallsLike([], []);
+		expect(result1).toEqual(['yield 123']);
+		expect(result2).toEqual(['yield 456']);
 	});
 });

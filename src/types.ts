@@ -2,19 +2,19 @@ import TypedEventEmitter from 'typed-emitter';
 import { Func, AnyIterableItem } from 'is-this-a-pigeon';
 
 interface Events<TFunc extends Func> {
-	init(uuid: string, ...args: Parameters<TFunc>): void;
+	init(uniqueId: string, ...args: Parameters<TFunc>): void;
 	end(
-		uuid: string,
+		uniqueId: string,
 		result: ReturnType<TFunc>,
 		...args: Parameters<TFunc>
 	): void;
 	yielded(
-		uuid: string,
+		uniqueId: string,
 		value: AnyIterableItem<ReturnType<TFunc>>,
 		...args: Parameters<TFunc>
 	): void;
-	iterated(uuid: string, ...args: Parameters<TFunc>): void;
-	error(uuid: string, error: any, ...args: Parameters<TFunc>): void;
+	iterated(uniqueId: string, ...args: Parameters<TFunc>): void;
+	error(uniqueId: string, error: any, ...args: Parameters<TFunc>): void;
 }
 
 export type DecoratorEvents<TFunc extends Func> = Partial<Events<TFunc>>;
