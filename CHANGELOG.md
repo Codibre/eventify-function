@@ -1,5 +1,8 @@
 
-## 0.3.1
+## 0.4.0
+* af91861 doing some magic with proxy and call context
+## v0.3.1
+* 3c35677 0.3.1
 * c4f912d fixing readme
 ## v0.3.0
 * 4090ba9 0.3.0

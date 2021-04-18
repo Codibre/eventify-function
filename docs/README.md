@@ -1,6 +1,6 @@
-fluent-iterable - v0.3.1
+fluent-iterable - v0.4.0
 
-# fluent-iterable - v0.3.1
+# fluent-iterable - v0.4.0
 
 ## Table of contents
 
@@ -19,6 +19,9 @@ fluent-iterable - v0.3.1
 ### Functions
 
 - [applyEventify](README.md#applyeventify)
+- [callId](README.md#callid)
+- [eventMapGet](README.md#eventmapget)
+- [eventMapSet](README.md#eventmapset)
 - [eventifyFunction](README.md#eventifyfunction)
 - [isEventified](README.md#iseventified)
 
@@ -69,6 +72,74 @@ Name | Type |
 Name | Type |
 :------ | :------ |
 `getInstance?` | <T\>(`cls`: *Class*<T\>) => T |
+
+**Returns:** *void*
+
+___
+
+### callId
+
+▸ **callId**(`self`: *any*): *string*
+
+#### Parameters:
+
+Name | Type |
+:------ | :------ |
+`self` | *any* |
+
+**Returns:** *string*
+
+___
+
+### eventMapGet
+
+▸ **eventMapGet**(`id`: *string*, `key`: *string*): *unknown* \| *undefined*
+
+#### Parameters:
+
+Name | Type |
+:------ | :------ |
+`id` | *string* |
+`key` | *string* |
+
+**Returns:** *unknown* \| *undefined*
+
+▸ **eventMapGet**(`self`: *any*, `key`: *string*): *unknown* \| *undefined*
+
+#### Parameters:
+
+Name | Type |
+:------ | :------ |
+`self` | *any* |
+`key` | *string* |
+
+**Returns:** *unknown* \| *undefined*
+
+___
+
+### eventMapSet
+
+▸ **eventMapSet**(`id`: *string*, `key`: *string*, `value`: *unknown*): *void*
+
+#### Parameters:
+
+Name | Type |
+:------ | :------ |
+`id` | *string* |
+`key` | *string* |
+`value` | *unknown* |
+
+**Returns:** *void*
+
+▸ **eventMapSet**(`self`: *any*, `key`: *string*, `value`: *unknown*): *void*
+
+#### Parameters:
+
+Name | Type |
+:------ | :------ |
+`self` | *any* |
+`key` | *string* |
+`value` | *unknown* |
 
 **Returns:** *void*
 
