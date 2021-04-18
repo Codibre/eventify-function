@@ -1,5 +1,8 @@
 
-## 0.4.1
+## 0.4.2
+* 42d8233 fixing lint
+## v0.4.1
+* 5c77fa8 0.4.1
 * 95bfa6b changing unique id algorithm for something lighter
 * de1eab6 changing unique id algorithm for something lighter
 ## v0.4.0
