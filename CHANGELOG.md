@@ -1,5 +1,8 @@
 
-## 0.4.2
+## 0.4.3
+* c2ff070 Fixing code smell
+## v0.4.2
+* 31d2c8b 0.4.2
 * 42d8233 fixing lint
 ## v0.4.1
 * 5c77fa8 0.4.1
