@@ -92,6 +92,47 @@ class MyClass {
 
 Using it like this, the applier will be used immediately.
 
+## Sharing values between event listeners and eventified methods
+
+Let's suppose, in your method, you have an intermediate value that is useful in your error event, for some logging purpose. The error event only have access to the error parameters, but not any information limited to the function scope, so, how do you do it?
+
+The first way to achieve this is to aggregate the information you want in the parameters the function received, before the error happens. This way, when the parameters are passed to the error event, it'll have the additional info. But what if you don't want to pollute your parameters?
+
+in this, case, there is some special functions you may call **just inside the eventified method** that'll help you out:
+
+```ts
+class MyTest() {
+  constructor(private logger: Logger) {}
+
+  @Eventify(MyErrorHandler)
+  async myMethod(value: string, index: number) {
+    const id = await getIndexId(index);
+    // The callId function will return the call id passed to the events!
+    this.logger.info(`index id ${id} received for ${callId(this)}`);
+    // The eventMapSet will put any information you want in a temporary context available while your method is running
+    eventMapSet('index-id', id);
+
+    await doSomethingElse(id, value);
+  }
+}
+```
+
+Then, to access your information from your event, you can do as follow:
+
+```ts
+class MyErrorHandler implements EventifyApplier<MyTest['myMethod']s> {
+  constructor(private logger: Logger) {}
+
+  applyListeners(eventified: EventifiedFunc<MyTest['myMethod']>) {
+    eventified.on('error', (uuid: string, error: Error, test: string, index: number) => {
+      this.logger.error(`${uuid}: an error occurred for index id ${eventMapGet(uuid, 'index-id')}: ${error.message}`);
+    });
+  }
+}
+```
+
+That's it! But be aware! This  information is highly temporary and, if you want to access if in the **error**, **end** or **iterated** event, you need to do it immediately in the event listener, before any promise awaiting or then operation, otherwise the information may already have been dropped.
+
 ## License
 
 Licensed under [MIT](https://en.wikipedia.org/wiki/MIT_License).

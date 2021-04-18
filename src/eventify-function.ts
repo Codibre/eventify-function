@@ -10,85 +10,121 @@ import {
 import { eventified } from './symbol';
 import { v4 } from 'uuid';
 
+const callIdSymbol = Symbol('EventifyCallId');
+const contextSymbol = Symbol('EventifyContext');
+const contexts = new Map<string, Map<string, unknown>>();
+
+function clearContext(id: string) {
+	contexts.delete(id);
+}
+
+function getContext(self: string | any): Map<string, unknown> {
+	return typeof self === 'string' ? contexts.get(self) : self?.[contextSymbol];
+}
+
 function dealWithError(
 	emitter: FunctionEmitter<Func>,
-	callId: string,
+	id: string,
 	err: any,
 	args: any[],
 ): any {
-	emitter.emit('error', callId, err, ...args);
+	emitter.emit('error', id, err, ...args);
+	clearContext(id);
 	throw err;
 }
 
 function dealWithResult(
 	emitter: FunctionEmitter<Func>,
-	callId: string,
+	id: string,
 	result: any,
 	args: any[],
 ): any {
-	emitter.emit('end', callId, result, ...args);
+	emitter.emit('end', id, result, ...args);
+	clearContext(id);
 	return result;
 }
 
 async function* dealWithAsyncIterable<T>(
 	emitter: FunctionEmitter<Func>,
-	callId: string,
+	id: string,
 	result: AsyncIterable<T>,
 	args: any[],
 ) {
 	try {
 		for await (const item of result) {
-			emitter.emit('yielded', callId, item, ...args);
+			emitter.emit('yielded', id, item, ...args);
 			yield item;
 		}
 	} catch (err) {
-		return dealWithError(emitter, callId, err, args);
+		return dealWithError(emitter, id, err, args);
 	}
-	emitter.emit('iterated', callId, ...args);
+	emitter.emit('iterated', id, ...args);
+	clearContext(id);
 }
 
 function* dealWithIterable<T>(
 	emitter: FunctionEmitter<Func>,
-	callId: string,
+	id: string,
 	result: Iterable<T>,
 	args: any[],
 ) {
 	try {
 		for (const item of result) {
-			emitter.emit('yielded', callId, item, ...args);
+			emitter.emit('yielded', id, item, ...args);
 			yield item;
 		}
 	} catch (err) {
-		return dealWithError(emitter, callId, err, args);
+		return dealWithError(emitter, id, err, args);
 	}
-	emitter.emit('iterated', callId, ...args);
+	emitter.emit('iterated', id, ...args);
+	clearContext(id);
 }
 
 function decideWhatToDoWithResult<T>(
 	emitter: FunctionEmitter<Func>,
-	callId: string,
+	id: string,
 	result: T,
 	args: any[],
 ) {
 	if (isOnlyIterable(result)) {
-		return dealWithIterable(emitter, callId, result, args);
+		return dealWithIterable(emitter, id, result, args);
 	} else if (isAsyncIterable(result)) {
-		return dealWithAsyncIterable(emitter, callId, result, args);
+		return dealWithAsyncIterable(emitter, id, result, args);
 	}
-	return dealWithResult(emitter, callId, result, args);
+	return dealWithResult(emitter, id, result, args);
 }
 
 async function dealWithPromise<TFunc extends Func>(
 	emitter: FunctionEmitter<TFunc>,
-	callId: string,
+	id: string,
 	result: PromiseLike<ReturnType<TFunc>>,
 	args: Parameters<TFunc>,
 ) {
 	try {
-		return decideWhatToDoWithResult(emitter, callId, await result, args);
+		return decideWhatToDoWithResult(emitter, id, await result, args);
 	} catch (err) {
-		return dealWithError(emitter, callId, err, args);
+		return dealWithError(emitter, id, err, args);
 	}
+}
+
+function getSelf(self: any, id: string) {
+	if (typeof self === 'object') {
+		const context = new Map<string, unknown>();
+		contexts.set(id, context);
+		self = new Proxy(self, {
+			get(target, p) {
+				switch (p) {
+					case callIdSymbol:
+						return id;
+					case contextSymbol:
+						return context;
+					default:
+						return target[p];
+				}
+			},
+		});
+	}
+	return self;
 }
 
 function getFunc<TFunc extends Func>(
@@ -97,16 +133,17 @@ function getFunc<TFunc extends Func>(
 ) {
 	return function (this: any, ...args: Parameters<TFunc>): ReturnType<TFunc> {
 		let result: ReturnType<TFunc>;
-		const callId = v4();
-		listener.emit('init', callId, ...args);
+		const id = v4();
+		const self = getSelf(this, id);
+		listener.emit('init', id, ...args);
 		try {
-			result = callback.call(this, ...args);
+			result = callback.call(self, ...args);
 		} catch (err) {
-			return dealWithError(listener, callId, err, args);
+			return dealWithError(listener, id, err, args);
 		}
 		return isPromiseLike(result)
-			? dealWithPromise(listener, callId, result, args)
-			: decideWhatToDoWithResult(listener, callId, result, args);
+			? dealWithPromise(listener, id, result, args)
+			: decideWhatToDoWithResult(listener, id, result, args);
 	} as EventifiedFunc<TFunc>;
 }
 
@@ -127,4 +164,40 @@ export function eventifyFunction<TFunc extends Func>(
 		value: true,
 	});
 	return func;
+}
+
+export function callId(self: any): string {
+	const id = self?.[callIdSymbol];
+
+	if (!id) {
+		throw TypeError(
+			'callId must be called inside an eventified method passing "this" as parameter',
+		);
+	}
+
+	return id;
+}
+
+function validEventMap(map: Map<string, unknown>) {
+	if (!map) {
+		throw TypeError(
+			'eventMapGet must be called inside an eventified method passing "this" as parameter or informing the call id',
+		);
+	}
+}
+
+export function eventMapGet(id: string, key: string): unknown | undefined;
+export function eventMapGet(self: any, key: string): unknown | undefined;
+export function eventMapGet(self: any, key: string): unknown | undefined {
+	const map: Map<string, unknown> = getContext(self);
+	validEventMap(map);
+	return map.get(key);
+}
+
+export function eventMapSet(id: string, key: string, value: unknown): void;
+export function eventMapSet(self: any, key: string, value: unknown): void;
+export function eventMapSet(self: any, key: string, value: unknown): void {
+	const map: Map<string, unknown> = getContext(self);
+	validEventMap(map);
+	map.set(key, value);
 }
