@@ -1,12 +1,12 @@
-[fluent-iterable - v0.4.0](../README.md) / FuncListeners
+[fluent-iterable - v0.4.1](../README.md) / FuncListeners
 
 # Interface: FuncListeners<TFunc\>
 
 ## Type parameters
 
-Name | Type |
-:------ | :------ |
-`TFunc` | Func |
+| Name | Type |
+| :------ | :------ |
+| `TFunc` | Func |
 
 ## Table of contents
 

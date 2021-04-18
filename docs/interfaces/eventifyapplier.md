@@ -1,12 +1,12 @@
-[fluent-iterable - v0.4.0](../README.md) / EventifyApplier
+[fluent-iterable - v0.4.1](../README.md) / EventifyApplier
 
 # Interface: EventifyApplier<F\>
 
 ## Type parameters
 
-Name | Type |
-:------ | :------ |
-`F` | Func |
+| Name | Type |
+| :------ | :------ |
+| `F` | Func |
 
 ## Table of contents
 
@@ -22,8 +22,8 @@ Name | Type |
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`eventifiedMethod` | [*FuncListeners*](funclisteners.md)<F\> |
+| Name | Type |
+| :------ | :------ |
+| `eventifiedMethod` | [*FuncListeners*](funclisteners.md)<F\> |
 
 **Returns:** *void*

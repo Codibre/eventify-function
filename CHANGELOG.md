@@ -1,5 +1,9 @@
 
-## 0.4.0
+## 0.4.1
+* 95bfa6b changing unique id algorithm for something lighter
+* de1eab6 changing unique id algorithm for something lighter
+## v0.4.0
+* abf7143 0.4.0
 * af91861 doing some magic with proxy and call context
 ## v0.3.1
 * 3c35677 0.3.1

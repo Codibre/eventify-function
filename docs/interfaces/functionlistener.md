@@ -1,12 +1,12 @@
-[fluent-iterable - v0.4.0](../README.md) / FunctionListener
+[fluent-iterable - v0.4.1](../README.md) / FunctionListener
 
 # Interface: FunctionListener<TFunc\>
 
 ## Type parameters
 
-Name | Type |
-:------ | :------ |
-`TFunc` | Func |
+| Name | Type |
+| :------ | :------ |
+| `TFunc` | Func |
 
 ## Callable
 
@@ -14,15 +14,15 @@ Name | Type |
 
 #### Type parameters:
 
-Name | Type |
-:------ | :------ |
-`E` | keyof *Events*<TFunc\> |
+| Name | Type |
+| :------ | :------ |
+| `E` | keyof *Events*<TFunc\> |
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`event` | E |
-`listener` | *Events*<TFunc\>[E] |
+| Name | Type |
+| :------ | :------ |
+| `event` | E |
+| `listener` | *Events*<TFunc\>[E] |
 
 **Returns:** [*FunctionEmitter*](../README.md#functionemitter)<TFunc\>

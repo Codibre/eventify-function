@@ -1,6 +1,6 @@
-fluent-iterable - v0.4.0
+fluent-iterable - v0.4.1
 
-# fluent-iterable - v0.4.0
+# fluent-iterable - v0.4.1
 
 ## Table of contents
 
@@ -33,9 +33,9 @@ fluent-iterable - v0.4.0
 
 #### Type parameters:
 
-Name | Type |
-:------ | :------ |
-`TFunc` | Func |
+| Name | Type |
+| :------ | :------ |
+| `TFunc` | Func |
 
 ___
 
@@ -45,9 +45,9 @@ ___
 
 #### Type parameters:
 
-Name | Type |
-:------ | :------ |
-`TFunc` | Func |
+| Name | Type |
+| :------ | :------ |
+| `TFunc` | Func |
 
 ___
 
@@ -57,9 +57,9 @@ ___
 
 #### Type parameters:
 
-Name | Type |
-:------ | :------ |
-`TFunc` | Func |
+| Name | Type |
+| :------ | :------ |
+| `TFunc` | Func |
 
 ## Functions
 
@@ -69,9 +69,9 @@ Name | Type |
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`getInstance?` | <T\>(`cls`: *Class*<T\>) => T |
+| Name | Type |
+| :------ | :------ |
+| `getInstance?` | <T\>(`cls`: *Class*<T\>) => T |
 
 **Returns:** *void*
 
@@ -83,9 +83,9 @@ ___
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`self` | *any* |
+| Name | Type |
+| :------ | :------ |
+| `self` | *any* |
 
 **Returns:** *string*
 
@@ -97,10 +97,10 @@ ___
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`id` | *string* |
-`key` | *string* |
+| Name | Type |
+| :------ | :------ |
+| `id` | *string* |
+| `key` | *string* |
 
 **Returns:** *unknown* \| *undefined*
 
@@ -108,10 +108,10 @@ Name | Type |
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`self` | *any* |
-`key` | *string* |
+| Name | Type |
+| :------ | :------ |
+| `self` | *any* |
+| `key` | *string* |
 
 **Returns:** *unknown* \| *undefined*
 
@@ -123,11 +123,11 @@ ___
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`id` | *string* |
-`key` | *string* |
-`value` | *unknown* |
+| Name | Type |
+| :------ | :------ |
+| `id` | *string* |
+| `key` | *string* |
+| `value` | *unknown* |
 
 **Returns:** *void*
 
@@ -135,11 +135,11 @@ Name | Type |
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`self` | *any* |
-`key` | *string* |
-`value` | *unknown* |
+| Name | Type |
+| :------ | :------ |
+| `self` | *any* |
+| `key` | *string* |
+| `value` | *unknown* |
 
 **Returns:** *void*
 
@@ -151,15 +151,15 @@ ___
 
 #### Type parameters:
 
-Name | Type |
-:------ | :------ |
-`TFunc` | *Func*<Args, any\> |
+| Name | Type |
+| :------ | :------ |
+| `TFunc` | *Func*<Args, any\> |
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`callback` | TFunc |
+| Name | Type |
+| :------ | :------ |
+| `callback` | TFunc |
 
 **Returns:** [*EventifiedFunc*](README.md#eventifiedfunc)<TFunc\>
 
@@ -171,8 +171,8 @@ ___
 
 #### Parameters:
 
-Name | Type |
-:------ | :------ |
-`func` | *any* |
+| Name | Type |
+| :------ | :------ |
+| `func` | *any* |
 
 **Returns:** func is EventifiedFunc<Func<Args, any\>\>
