@@ -36,7 +36,8 @@
     "lint:style": "eslint '**/*.ts'",
     "lint:style:fix": "eslint '**/*.ts' --fix",
     "prepublish": "npm run test:coverage && npm run build",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "prepare": "husky install"
   },
   "jest": {
     "moduleFileExtensions": [
