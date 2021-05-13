@@ -1,6 +1,6 @@
-fluent-iterable - v0.5.2
+fluent-iterable - v0.5.3
 
-# fluent-iterable - v0.5.2
+# fluent-iterable - v0.5.3
 
 ## Table of contents
 

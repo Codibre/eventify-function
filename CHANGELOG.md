@@ -1,5 +1,8 @@
 
-## 0.5.2
+## 0.5.3
+* 22460c6 fixing decorator when class use class decorator
+## v0.5.2
+* 94443df 0.5.2
 * ea67d31 bettering eventMapGet typing
 ## v0.5.1
 * 41a6788 0.5.1
