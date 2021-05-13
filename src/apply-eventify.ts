@@ -19,7 +19,7 @@ export function applyEventify(
 	getInstance?: <T extends EventifyApplier<Func>>(cls: Class<T>) => T,
 ) {
 	validateGetInstance(getInstance);
-	for (const [ref, eventifiedFunc] of eventifiedList) {
+	for (const [eventifiedFunc, ref] of eventifiedList) {
 		const applier = getApplier(ref, getInstance!);
 		if (applier) {
 			applier.applyListeners(eventifiedFunc);
