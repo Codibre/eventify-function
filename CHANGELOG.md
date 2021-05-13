@@ -1,5 +1,8 @@
 
-## 0.4.4
+## 0.4.5
+* 03477cd fixing eventifyApplying
+## v0.4.4
+* b129774 0.4.4
 * dccafd1 preparing auto build in publishing
 * 7870737 exporting Eventify decorator
 ## v0.4.3
