@@ -1,5 +1,8 @@
 
-## 0.5.0
+## 0.5.1
+* e5058ab fixing typing
+## v0.5.0
+* 61ea4d1 0.5.0
 * eece47e adding options to specify appliers as eventifyFunction params
 ## v0.4.7
 * ce9ffb2 0.4.7

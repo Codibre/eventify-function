@@ -1,4 +1,4 @@
-[fluent-iterable - v0.5.0](../README.md) / FuncListeners
+[fluent-iterable - v0.5.1](../README.md) / FuncListeners
 
 # Interface: FuncListeners<TFunc\>
 
