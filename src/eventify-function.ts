@@ -193,12 +193,18 @@ function validEventMap(map: Map<string, unknown>) {
 	}
 }
 
-export function eventMapGet(id: string, key: string): unknown | undefined;
-export function eventMapGet(self: any, key: string): unknown | undefined;
-export function eventMapGet(self: any, key: string): unknown | undefined {
+export function eventMapGet<T = unknown>(
+	id: string,
+	key: string,
+): T | undefined;
+export function eventMapGet<T = unknown>(self: any, key: string): T | undefined;
+export function eventMapGet<T = unknown>(
+	self: any,
+	key: string,
+): T | undefined {
 	const map: Map<string, unknown> = getContext(self);
 	validEventMap(map);
-	return map.get(key);
+	return map.get(key) as T | undefined;
 }
 
 export function eventMapSet(id: string, key: string, value: unknown): void;
