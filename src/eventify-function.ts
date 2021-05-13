@@ -147,9 +147,12 @@ function getFunc<TFunc extends Func>(
 	} as EventifiedFunc<TFunc>;
 }
 
-export function eventifyFunction<TFunc extends Func>(
+export function eventifyFunction<
+	TFunc extends Func,
+	TFuncApplier extends TFunc
+>(
 	callback: TFunc,
-	...appliers: EventifyApplier<TFunc>[]
+	...appliers: EventifyApplier<TFuncApplier>[]
 ): EventifiedFunc<TFunc> {
 	if (isEventified(callback)) {
 		return callback as EventifiedFunc<TFunc>;
