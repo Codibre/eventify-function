@@ -1,5 +1,8 @@
 
-## 0.4.7
+## 0.5.0
+* eece47e adding options to specify appliers as eventifyFunction params
+## v0.4.7
+* ce9ffb2 0.4.7
 * 3ff4280 fixing unfixed
 ## v0.4.6
 * feea358 0.4.6

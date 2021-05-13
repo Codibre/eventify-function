@@ -1,6 +1,6 @@
-fluent-iterable - v0.4.7
+fluent-iterable - v0.5.0
 
-# fluent-iterable - v0.4.7
+# fluent-iterable - v0.5.0
 
 ## Table of contents
 
@@ -157,7 +157,7 @@ ___
 
 ### eventifyFunction
 
-▸ **eventifyFunction**<TFunc\>(`callback`: TFunc): [*EventifiedFunc*](README.md#eventifiedfunc)<TFunc\>
+▸ **eventifyFunction**<TFunc\>(`callback`: TFunc, ...`appliers`: [*EventifyApplier*](interfaces/eventifyapplier.md)<TFunc\>[]): [*EventifiedFunc*](README.md#eventifiedfunc)<TFunc\>
 
 #### Type parameters:
 
@@ -170,6 +170,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `callback` | TFunc |
+| `...appliers` | [*EventifyApplier*](interfaces/eventifyapplier.md)<TFunc\>[] |
 
 **Returns:** [*EventifiedFunc*](README.md#eventifiedfunc)<TFunc\>
 
