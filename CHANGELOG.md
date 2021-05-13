@@ -1,5 +1,8 @@
 
-## 0.4.6
+## 0.4.7
+* 3ff4280 fixing unfixed
+## v0.4.6
+* feea358 0.4.6
 * 53b8d4b fixing fixed applyEventify
 ## v0.4.5
 * 6310d02 0.4.5

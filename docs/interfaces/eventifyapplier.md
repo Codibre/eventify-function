@@ -1,4 +1,4 @@
-[fluent-iterable - v0.4.6](../README.md) / EventifyApplier
+[fluent-iterable - v0.4.7](../README.md) / EventifyApplier
 
 # Interface: EventifyApplier<F\>
 
