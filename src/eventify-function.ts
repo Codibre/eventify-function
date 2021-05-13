@@ -1,4 +1,4 @@
-import { FunctionEmitter, EventifiedFunc } from './types';
+import { FunctionEmitter, EventifiedFunc, EventifyApplier } from './types';
 import { isEventified } from './utils';
 import { EventEmitter } from 'events';
 import {
@@ -149,6 +149,7 @@ function getFunc<TFunc extends Func>(
 
 export function eventifyFunction<TFunc extends Func>(
 	callback: TFunc,
+	...appliers: EventifyApplier<TFunc>[]
 ): EventifiedFunc<TFunc> {
 	if (isEventified(callback)) {
 		return callback as EventifiedFunc<TFunc>;
@@ -163,6 +164,9 @@ export function eventifyFunction<TFunc extends Func>(
 		writable: false,
 		value: true,
 	});
+	if (appliers.length > 0) {
+		appliers.forEach((x) => x.applyListeners(func));
+	}
 	return func;
 }
 
