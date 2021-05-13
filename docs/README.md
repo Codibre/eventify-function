@@ -1,6 +1,6 @@
-fluent-iterable - v0.4.3
+fluent-iterable - v0.4.4
 
-# fluent-iterable - v0.4.3
+# fluent-iterable - v0.4.4
 
 ## Table of contents
 
@@ -15,6 +15,10 @@ fluent-iterable - v0.4.3
 - [DecoratorEvents](README.md#decoratorevents)
 - [EventifiedFunc](README.md#eventifiedfunc)
 - [FunctionEmitter](README.md#functionemitter)
+
+### Variables
+
+- [Eventify](README.md#eventify)
 
 ### Functions
 
@@ -60,6 +64,12 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `TFunc` | Func |
+
+## Variables
+
+### Eventify
+
+• `Const` **Eventify**: *IterableMethodDecorator*<[applierClass: EventifyApplier<Func<Args, any\>\> \| AbstractClass<EventifyApplier<Func<Args, any\>\>\>]\>
 
 ## Functions
 

@@ -1,5 +1,9 @@
 
-## 0.4.3
+## 0.4.4
+* dccafd1 preparing auto build in publishing
+* 7870737 exporting Eventify decorator
+## v0.4.3
+* 9fccb8a 0.4.3
 * c2ff070 Fixing code smell
 ## v0.4.2
 * 31d2c8b 0.4.2
