@@ -1,5 +1,6 @@
 
-## 0.5.3
+## 0.5.4
+* 779889f fixing decorator when class use class decorator
 * 22460c6 fixing decorator when class use class decorator
 ## v0.5.2
 * 94443df 0.5.2
