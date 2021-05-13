@@ -1,6 +1,6 @@
-fluent-iterable - v0.5.1
+fluent-iterable - v0.5.2
 
-# fluent-iterable - v0.5.1
+# fluent-iterable - v0.5.2
 
 ## Table of contents
 
@@ -103,7 +103,13 @@ ___
 
 ### eventMapGet
 
-▸ **eventMapGet**(`id`: *string*, `key`: *string*): *unknown* \| *undefined*
+▸ **eventMapGet**<T\>(`id`: *string*, `key`: *string*): T \| *undefined*
+
+#### Type parameters:
+
+| Name | Default |
+| :------ | :------ |
+| `T` | *unknown* |
 
 #### Parameters:
 
@@ -112,9 +118,15 @@ ___
 | `id` | *string* |
 | `key` | *string* |
 
-**Returns:** *unknown* \| *undefined*
+**Returns:** T \| *undefined*
 
-▸ **eventMapGet**(`self`: *any*, `key`: *string*): *unknown* \| *undefined*
+▸ **eventMapGet**<T\>(`self`: *any*, `key`: *string*): T \| *undefined*
+
+#### Type parameters:
+
+| Name | Default |
+| :------ | :------ |
+| `T` | *unknown* |
 
 #### Parameters:
 
@@ -123,7 +135,7 @@ ___
 | `self` | *any* |
 | `key` | *string* |
 
-**Returns:** *unknown* \| *undefined*
+**Returns:** T \| *undefined*
 
 ___
 

@@ -1,5 +1,8 @@
 
-## 0.5.1
+## 0.5.2
+* ea67d31 bettering eventMapGet typing
+## v0.5.1
+* 41a6788 0.5.1
 * e5058ab fixing typing
 ## v0.5.0
 * 61ea4d1 0.5.0
