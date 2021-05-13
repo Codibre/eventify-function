@@ -50,14 +50,6 @@ describe(fName(applyEventify), () => {
 
 		const result = applyEventify((cls) => new (cls as any)());
 
-		expect(spy1).toHaveCallsLike(
-			[Test.prototype.test1],
-			[Test.prototype.test2],
-		);
-		expect(spy2).toHaveCallsLike(
-			[Test.prototype.test1],
-			[Test.prototype.test3],
-		);
 		expect(spy3).toHaveCallsLike(
 			['eventified test1'],
 			['eventified test2'],
