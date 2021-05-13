@@ -1,5 +1,8 @@
 
-## 0.4.5
+## 0.4.6
+* 53b8d4b fixing fixed applyEventify
+## v0.4.5
+* 6310d02 0.4.5
 * 03477cd fixing eventifyApplying
 ## v0.4.4
 * b129774 0.4.4
