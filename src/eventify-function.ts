@@ -28,7 +28,9 @@ function dealWithError(
 	err: any,
 	args: any[],
 ): any {
-	emitter.emit('error', id, err, ...args);
+	if (emitter.listenerCount('error') > 0) {
+		emitter.emit('error', id, err, ...args);
+	}
 	clearContext(id);
 	throw err;
 }
