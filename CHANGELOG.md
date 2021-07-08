@@ -1,5 +1,8 @@
 
-## 0.5.4
+## 0.5.5
+* de80a8f fixing error thrown
+## v0.5.4
+* 27f2a83 0.5.4
 * 779889f fixing decorator when class use class decorator
 * 22460c6 fixing decorator when class use class decorator
 ## v0.5.2
